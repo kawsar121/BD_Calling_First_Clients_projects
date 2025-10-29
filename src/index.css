@@ -6,4 +6,29 @@
 body {
   @apply font-raleway;
 }
+    /* For div grident */
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.bg-gradient-animated {
+  background: linear-gradient(-45deg, #ee7752, #F9E4CB, #a2d0e1, #63e6c7);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
 
+
+    /* For text */
+    @keyframes text-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.text-gradient {
+  background: linear-gradient(90deg, #f59e0b, #3b82f6, #10b981);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-gradient 5s ease infinite;
+}

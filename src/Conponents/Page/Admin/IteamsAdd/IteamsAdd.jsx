@@ -25,10 +25,10 @@ const IteamsAdd = () => {
     
   }
   return (
-    <div className="hero bg-base-200 min-h-screen">
+    <div className="hero bg-base-200 min-h-screen mt-20">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl p-10">
-            <h1 className="text-3xl text-center font-bold">Login now!</h1>
+            <h1 className="text-3xl text-center font-bold">Product Add!</h1>
           <form onSubmit={handleformSubmit} className="card-body">
             {/* Name */}
             <div className="form-control">
@@ -108,7 +108,7 @@ const IteamsAdd = () => {
                 required
               />
             </div> 
-            <div className="form-control mt-6 mx-auto">
+            <div className="form-control mt-3 mx-auto">
               <button className="btn btn-neutral mt-4 text-black bg-yellow-300 p-3">Submit</button>
             </div>
           </form>

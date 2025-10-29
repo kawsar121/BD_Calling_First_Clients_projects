@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import OutLet from "./Conponents/OutLet/OutLet";
 import Home from "./Conponents/Page/Home/Home";
-import IteamsAdd from "./Conponents/Page/IteamsAdd/IteamsAdd";
+import IteamsAdd from "./Conponents/Page/Admin/IteamsAdd/IteamsAdd";
 import ShowProducts from "./Conponents/Page/Products/ShowProducts";
 import AddtoCart from "./Conponents/Page/Products/AddtoCart";
 import ProductDetails from "./Conponents/Page/Products/ProductDetails";
@@ -12,6 +12,9 @@ import ProtectedRoute from "./Private/ProtectedRoute";
 import About from "./Conponents/Page/About/About";
 import Collections from "./Conponents/Page/Collections/Collections";
 import Profile from "./Conponents/Page/Profile/Profile";
+import UpdateAndDelete from "./Conponents/Page/Admin/UpdateAndDelete/UpdateAndDelete";
+import Update from "./Conponents/Page/Admin/UpdateAndDelete/Update";
+import AdminProtected from "./Conponents/Page/Admin/AdminProtected";
 
 const router = createBrowserRouter([
   {
@@ -22,10 +25,22 @@ const router = createBrowserRouter([
             path:"/",
             element:<Home></Home>
         },
+        // Admin Start
         {
           path:"/iteamsadd",
           element: <IteamsAdd></IteamsAdd>
         },
+        {
+          path:"/updateanddelete",
+          element:<UpdateAndDelete></UpdateAndDelete>
+        },
+        {
+          path: "/update/:id",
+          element: <Update></Update>,
+          loader: ({params})=> fetch(`http://localhost:5000/iteams/${params.id}`)
+        },
+
+        // Admin Ends
         {
           path:"/showProducts",
           element:<ShowProducts></ShowProducts>
@@ -62,7 +77,12 @@ const router = createBrowserRouter([
         {
           path: "/profile",
           element:<Profile></Profile>
-        }
+        },
+        // {
+        //   path:"/adminProtect",
+        //   element: <AdminProtected></AdminProtected>
+        // }
+        
     ]
   },
 ]);

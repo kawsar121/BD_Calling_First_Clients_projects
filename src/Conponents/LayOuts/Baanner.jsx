@@ -1,5 +1,6 @@
 import React from "react";
 import bannerimg from "../../assets/bg.jpg";
+import { Link } from "react-router-dom";
 
 const Baanner = () => {
   return (
@@ -22,12 +23,12 @@ const Baanner = () => {
 
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-4">
-          <button className="px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition">
+          <Link to="/collections" className="px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition">
             Shop Now
-          </button>
-          <button className="px-6 py-3 border border-white text-white rounded-full hover:bg-white hover:text-black transition">
+          </Link>
+          <Link to="/about" className="px-6 py-3 border border-white text-white rounded-full hover:bg-white hover:text-black transition">
             About Us
-          </button>
+          </Link>
         </div>
       </div>
     </div>
