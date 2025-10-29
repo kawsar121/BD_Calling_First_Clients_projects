@@ -22,7 +22,7 @@ const Baanner = () => {
         </p>
 
         {/* Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex  sm:flex-row gap-4">
           <Link to="/collections" className="px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition">
             Shop Now
           </Link>

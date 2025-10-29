@@ -8,6 +8,7 @@ import { Context } from "../../ContextApi/SetContext";
 import ProtectedRoute from "../../Private/ProtectedRoute";
 import AddtoCart from "../Page/Products/AddtoCart";
 import Themes from "../../Theme/Themes";
+import NavbarSearch from "./NavbarSearch ";
 
 const Navbar = () => {
   const { signout, user } = useContext(Context);
@@ -30,7 +31,7 @@ const Navbar = () => {
         <Link to="/">Skincare</Link>
       </li>
       <li>
-        <Link to='/collections'>Collections</Link>
+        <Link to="/collections">Collections</Link>
       </li>
       <li>
         <Link to="/about">About</Link>
@@ -51,13 +52,11 @@ const Navbar = () => {
 
         {/* MIDDLE - SEARCH BAR (Mobile only) */}
         <div className="flex-1 px-2 md:hidden">
-          <div className="flex items-center border rounded-md px-2 py-[3px]">
-            <IoSearchSharp className="text-lg text-gray-500" />
-            <input
-              type="text"
-              placeholder="Search"
-              className="flex-1 px-2 text-sm outline-none bg-transparent dark:text-white"
-            />
+          <div className="flex items-center  rounded-md px-2 py-[3px]">
+            {/* Desktop Search */}
+            <div className="relative">
+              <NavbarSearch />
+            </div>
           </div>
         </div>
 
@@ -65,12 +64,11 @@ const Navbar = () => {
         <ul className="hidden md:flex menu menu-horizontal gap-8 font-medium items-center  text-red-400">
           {menu}
         </ul>
-        
 
-        {/* RIGHT - ICONS */}
+        {/* RIGHT - ICONS Dekstop Search */}
         <div className="flex items-center gap-4 text-xl text-gray-500 dark:text-gray-200">
           {/* Desktop Search */}
-          <div className="hidden md:flex items-center relative">
+          {/* <div className="hidden md:flex items-center relative">
             <div
               className="flex items-center rounded-md px-0 py-[3px] cursor-pointer transition-all duration-300"
               onClick={() => setShowSearch(!showSearch)}
@@ -85,6 +83,11 @@ const Navbar = () => {
                 />
               )}
             </div>
+          </div> */}
+          {/* Desktop Search */}
+          {/* AlterNative */}
+          <div className="hidden md:flex items-center relative">
+            <NavbarSearch />
           </div>
 
           {/* Desktop Other Icons */}
@@ -113,7 +116,6 @@ const Navbar = () => {
                     <span>
                       <Themes></Themes>
                     </span>
-                    
                   </a>
                 </li>
                 {/* Condition for login logouts */}
@@ -211,7 +213,6 @@ const Navbar = () => {
                       <a className="justify-between">
                         Theme
                         <span className="badge">
-                          
                           <Themes></Themes>
                         </span>
                       </a>
@@ -220,7 +221,7 @@ const Navbar = () => {
                     {user ? (
                       <>
                         <li>
-                          <Link to='/profile' className="justify-between">
+                          <Link to="/profile" className="justify-between">
                             Profile
                           </Link>
                         </li>
