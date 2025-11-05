@@ -20,7 +20,7 @@ const SocialLogin = () => {
     <div>
       <button
         onClick={googleLogin}
-        className="bg-red-300 mt-2 px-3 py-2 flex items-center justify-center mx-32 whitespace-nowrap"
+        className="bg-blue-400 text-white rounded-sm mt-2 px-2 py-2 flex items-center justify-center mx-32 whitespace-nowrap"
       >
         Google SignIn
       </button>
