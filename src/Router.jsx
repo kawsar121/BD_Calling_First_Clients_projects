@@ -15,6 +15,7 @@ import Profile from "./Conponents/Page/Profile/Profile";
 import UpdateAndDelete from "./Conponents/Page/Admin/UpdateAndDelete/UpdateAndDelete";
 import Update from "./Conponents/Page/Admin/UpdateAndDelete/Update";
 import AdminProtected from "./Conponents/Page/Admin/AdminProtected";
+import Controll from "./AdminControll/Controll";
 
 const router = createBrowserRouter([
   {
@@ -78,10 +79,10 @@ const router = createBrowserRouter([
           path: "/profile",
           element:<Profile></Profile>
         },
-        // {
-        //   path:"/adminProtect",
-        //   element: <AdminProtected></AdminProtected>
-        // }
+        {
+          path:"/admincontroll",
+          element: <Controll></Controll>
+        }
         
     ]
   },
