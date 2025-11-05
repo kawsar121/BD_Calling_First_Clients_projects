@@ -29,4 +29,20 @@
     withCredentials : true
 }) 
 eta use korar karon holo axios ke shotcut and secure korar jonno
-
+useEffect(()=>{
+        instance.interceptors.response.use(res=>{
+            return res
+        }, error=>{
+            if(error.status === 401 || error.status === 403){
+                signout()
+                .then(res=>{
+                    navigate('/')
+                })
+                .catch(err=>{
+                    console.log(err)
+                })
+            }
+             return Promise.reject(error);
+        })
+    },[])
+jokhon user shothik cookie use korbe na tokhon direct logout howe jabe
