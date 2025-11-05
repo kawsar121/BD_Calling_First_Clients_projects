@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import { Context } from '../ContextApi/SetContext';
 import { useNavigate } from 'react-router-dom';
 const instance = axios.create({
-    baseURL : 'http://localhost:5000',
+    baseURL : 'https://kb-fcszt4c44-kawsars-projects-6c73758e.vercel.app/',
     withCredentials : true
 })
 const UseAxios = () => {

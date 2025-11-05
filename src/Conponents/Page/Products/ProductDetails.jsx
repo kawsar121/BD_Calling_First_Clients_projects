@@ -37,7 +37,7 @@ const ProductDetails = () => {
       price: price,
       quantity:quantitys
     };
-    axios.post("http://localhost:5000/cart", cartData)
+    axios.post("https://kb-fcszt4c44-kawsars-projects-6c73758e.vercel.app//cart", cartData)
     .then((res) => {
       console.log(res.data);
       if (res.data.insertedId) {

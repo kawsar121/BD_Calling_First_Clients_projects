@@ -12,7 +12,7 @@ const IteamsAdd = () => {
     const price = form.price.value;
     const formsData = {name,category,url,quantity, price, details}
     console.log(formsData)
-    axios.post('http://localhost:5000/iteams', formsData)
+    axios.post('https://kb-fcszt4c44-kawsars-projects-6c73758e.vercel.app//iteams', formsData)
     .then(res=>{
       console.log(res.data)
       if(res.data.insertedId){

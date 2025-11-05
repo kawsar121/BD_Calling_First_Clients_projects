@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         {
           path: "/update/:id",
           element: <Update></Update>,
-          loader: ({params})=> fetch(`http://localhost:5000/iteams/${params.id}`)
+          loader: ({params})=> fetch(`https://kb-fcszt4c44-kawsars-projects-6c73758e.vercel.app//iteams/${params.id}`)
         },
 
         // Admin Ends
@@ -57,7 +57,7 @@ const router = createBrowserRouter([
         {
           path:"/iteams/id/:id",
           element:<ProductDetails></ProductDetails>,
-          loader:({params})=> fetch(`http://localhost:5000/iteams/${params.id}`)
+          loader:({params})=> fetch(`https://kb-fcszt4c44-kawsars-projects-6c73758e.vercel.app//iteams/${params.id}`)
         },
         {
           path:"/login",

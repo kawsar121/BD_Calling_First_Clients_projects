@@ -42,14 +42,14 @@ const SetContext = ({children}) => {
             // Set Cookie and remove cookie
             if(currentUser?.email){
                const userEmail = {email : currentUser.email};
-               axios.post('http://localhost:5000/jwt', userEmail, {withCredentials:true})
+               axios.post('https://kb-fcszt4c44-kawsars-projects-6c73758e.vercel.app//jwt', userEmail, {withCredentials:true})
                .then(res=> {
                 console.log(res.data); 
                 setLoading(false)
             })
             }    
             else{
-                axios.post('http://localhost:5000/logout',{}, {withCredentials:true})
+                axios.post('https://kb-fcszt4c44-kawsars-projects-6c73758e.vercel.app//logout',{}, {withCredentials:true})
                 .then(res=> {
                     console.log(res.data);
                     setLoading(false)

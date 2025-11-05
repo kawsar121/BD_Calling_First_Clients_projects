@@ -6,7 +6,7 @@ const ShowProducts = () => {
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/iteams")
+    fetch("https://kb-fcszt4c44-kawsars-projects-6c73758e.vercel.app//iteams")
       .then((res) => res.json())
       .then((data) => {
         setShowProducts(data);

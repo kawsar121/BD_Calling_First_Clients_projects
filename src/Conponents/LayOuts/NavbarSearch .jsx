@@ -33,7 +33,7 @@ const NavbarSearch = () => {
   // Load all products
   useEffect(() => {
     axios
-      .get("http://localhost:5000/iteams")
+      .get("https://kb-fcszt4c44-kawsars-projects-6c73758e.vercel.app//iteams")
       .then((res) => setProducts(res.data))
       .catch((err) => console.log(err));
   }, []);
