@@ -2,9 +2,10 @@ import { useContext } from "react";
 import { Context } from "../../../ContextApi/SetContext";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import SocialLogin from "./SocialLogin/SocialLogin";
 
 const Login = () => {
-  const { loginUser } = useContext(Context);
+  const { loginUser,googleSignIn } = useContext(Context);
   const location = useLocation();
   // console.log('login',location)
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ const Login = () => {
       .catch((error) => {
         console.log(error);
       });
+      
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#F9E4CB] px-4 ">
@@ -84,6 +86,7 @@ const Login = () => {
             Sign Up
           </Link>
         </p>
+        <SocialLogin></SocialLogin>
       </div>
     </div>
   );

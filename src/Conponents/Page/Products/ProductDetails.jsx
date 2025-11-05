@@ -22,11 +22,11 @@ const ProductDetails = () => {
   console.log(pdetails);
   // Post Cart
   const handleAddtoCarts = () => {
-    // if (!user) {
-    //   alert("Please login first to add to cart!");
-    //   navigate("/login"); // login শেষে একই পেজে ফিরবে
-    //   return;
-    // }
+    if (!user) {
+      alert("Please login first to add to cart!");
+      navigate("/login");
+      return;
+    }
 
     const cartData = {
       email: user?.email,
@@ -37,11 +37,12 @@ const ProductDetails = () => {
       price: price,
       quantity:quantitys
     };
-    axios.post("http://localhost:5000/cart", cartData).then((res) => {
+    axios.post("http://localhost:5000/cart", cartData)
+    .then((res) => {
       console.log(res.data);
       if (res.data.insertedId) {
-        alert("Add to cart SuccessFully");
         navigate("/cart");
+        alert("Add to cart SuccessFully");
       }
     });
   };
@@ -56,7 +57,7 @@ const ProductDetails = () => {
           <img
             src={url}
             alt={name}
-            className="transform scale-110 hover:scale-100 transition-transform duration-500 w-full h-[350px] sm:h-[400px] lg:h-[300px] rounded-xl shadow-md"
+            className="transform scale-100 md:scale-110 hover:scale-95 md:hover:scale-100 transition-transform duration-500 w-full h-[350px] sm:h-[400px] lg:h-[300px] rounded-xl shadow-md"
           />
         </div>
       </div>

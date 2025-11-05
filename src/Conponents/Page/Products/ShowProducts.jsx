@@ -33,12 +33,12 @@ const ShowProducts = () => {
         </button>
       </div>
 
-      <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 justify-center items-start gap-5">
+      <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-2 justify-center items-start gap-5">
         {displayedProducts.map((product) => (
           <Link key={product._id} to={`/iteams/id/${product._id}`}>
-            <div className="max-w-xs w-4/5 mx-auto rounded-lg overflow-hidden shadow-lg bg-white flex flex-col h-full">
+            <div className="max-w-xs w-5/6 md:w-4/5 mx-auto rounded-lg overflow-hidden shadow-lg bg-white flex flex-col h-full">
               {/* Image section (fixed height) */}
-              <div className="w-full h-44 bg-gray-200 flex items-center justify-center overflow-hidden">
+              <div className="w-full h-52  bg-gray-200 flex items-center justify-center overflow-hidden">
                 {product.url ? (
                   <img
                     className="transform scale-110 hover:scale-100 transition-transform duration-500 object-cover w-full h-full"

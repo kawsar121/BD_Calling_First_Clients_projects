@@ -3,15 +3,13 @@ import { IoSearchSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-// Debounce function
+// Debounce hook
 const useDebounce = (value, delay) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
-
   useEffect(() => {
     const handler = setTimeout(() => setDebouncedValue(value), delay);
     return () => clearTimeout(handler);
   }, [value, delay]);
-
   return debouncedValue;
 };
 
@@ -21,9 +19,18 @@ const NavbarSearch = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [showSearch, setShowSearch] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
   const searchRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-  // Load all products once
+  // Detect screen size
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Load all products
   useEffect(() => {
     axios
       .get("http://localhost:5000/iteams")
@@ -35,6 +42,7 @@ const NavbarSearch = () => {
   useEffect(() => {
     if (!debouncedQuery.trim()) {
       setFilteredProducts([]);
+      setShowDropdown(false);
       return;
     }
 
@@ -42,14 +50,14 @@ const NavbarSearch = () => {
       p.name.toLowerCase().includes(debouncedQuery.toLowerCase())
     );
     setFilteredProducts(filtered);
+    setShowDropdown(filtered.length > 0);
   }, [debouncedQuery, products]);
 
-  // Click outside → hide everything
+  // Click outside → hide dropdown (even on mobile)
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
-        setShowSearch(false);
-        setSearchQuery("");
+        setShowDropdown(false);
       }
     };
 
@@ -72,8 +80,8 @@ const NavbarSearch = () => {
 
   return (
     <div ref={searchRef} className="relative">
-      {/* Search Icon */}
-      {!showSearch && (
+      {/* Desktop: icon to toggle */}
+      {!isMobile && !showSearch && (
         <div
           className="flex items-center rounded-md px-2 py-1 cursor-pointer transition-all duration-300"
           onClick={() => setShowSearch(true)}
@@ -82,10 +90,16 @@ const NavbarSearch = () => {
         </div>
       )}
 
-      {/* Search Input & Dropdown */}
-      {showSearch && (
-        <div className="absolute -top-3 right-0 bg-white dark:bg-gray-800 rounded-md shadow-lg w-64 z-50">
-          <div className="flex items-center border border-gray-300 rounded-md px-1 ">
+      {/* Search input + dropdown */}
+      {(showSearch || isMobile) && (
+        <div
+          className={`${
+            isMobile
+              ? "w-full relative" // prevent overflow on mobile
+              : "absolute -top-2 -right-[234px] md:-top-3 md:right-0 w-64"
+          } bg-white dark:bg-gray-800 rounded-md z-50`}
+        >
+          <div className="flex items-center border border-gray-300 rounded-md px-1 shadow-sm">
             <IoSearchSharp className="text-gray-500 text-xl" />
             <input
               type="text"
@@ -93,18 +107,29 @@ const NavbarSearch = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search products..."
               className="ml-2 outline-none text-base bg-transparent w-full dark:text-white"
-              autoFocus
+              autoFocus={!isMobile}
+              onFocus={() =>
+                filteredProducts.length > 0 && setShowDropdown(true)
+              }
             />
           </div>
 
-          {filteredProducts.length > 0 && (
-            <div className="mt-2 border rounded-md bg-white dark:bg-gray-900 shadow-md max-h-60 overflow-y-auto">
+          {/* Dropdown */}
+          {showDropdown && filteredProducts.length > 0 && (
+            <div
+              className={`absolute left-0 mt-2 w-full border rounded-md bg-white dark:bg-gray-900 shadow-md max-h-60 overflow-y-auto ${
+                isMobile ? "top-full" : ""
+              }`}
+            >
               {filteredProducts.map((p) => (
                 <Link
                   key={p._id}
                   to={`/iteams/id/${p._id}`}
                   className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
-                  onClick={() => setShowSearch(false)}
+                  onClick={() => {
+                    setShowDropdown(false);
+                    if (!isMobile) setShowSearch(false);
+                  }}
                 >
                   {highlightText(p.name, debouncedQuery)}
                 </Link>

@@ -174,9 +174,7 @@ const Navbar = () => {
                   </label>
 
                   {/* Drawer Content */}
-                  <ProtectedRoute>
                     <AddtoCart></AddtoCart>
-                  </ProtectedRoute>
                 </div>
               </div>
             </div>

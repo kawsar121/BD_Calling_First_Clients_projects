@@ -3,7 +3,7 @@ import logo from "../../assets/Logo.png";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-
+import svgimg from '../../assets/lol.svg'
 const Footer = () => {
   return (
     <footer className="mb-5 max-w-6xl mx-auto mt-14">

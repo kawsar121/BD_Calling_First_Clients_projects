@@ -1,8 +1,10 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/firebase.init";
+import axios from "axios";
 
 export const Context = createContext(null)
+const provider = new GoogleAuthProvider();
 const SetContext = ({children}) => {
     const [user, SetUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -19,6 +21,13 @@ const SetContext = ({children}) => {
        return signInWithEmailAndPassword(auth,email,password)
        
     }
+    
+    // Google Sign
+    const googleSignIn = () =>{
+        setLoading(true)
+        return signInWithPopup(auth,provider)
+    }
+
     //Sign Outs
     const signout = ()=>{
         setLoading(true)
@@ -29,7 +38,24 @@ const SetContext = ({children}) => {
     useEffect(()=>{
         const Usercollection = onAuthStateChanged(auth, (currentUser)=>{
             SetUser(currentUser)
-            setLoading(false)
+            // console.log(currentUser?.email)
+            // Set Cookie and remove cookie
+            if(currentUser?.email){
+               const userEmail = {email : currentUser.email};
+               axios.post('http://localhost:5000/jwt', userEmail, {withCredentials:true})
+               .then(res=> {
+                console.log(res.data); 
+                setLoading(false)
+            })
+            }    
+            else{
+                axios.post('http://localhost:5000/logout',{}, {withCredentials:true})
+                .then(res=> {
+                    console.log(res.data);
+                    setLoading(false)
+                })
+            }
+            
         })
         return Usercollection
        
@@ -41,7 +67,8 @@ const SetContext = ({children}) => {
         loginUser,
         user,
         loading,
-        signout
+        signout,
+        googleSignIn
     }
     return (
         <Context.Provider value={info}>

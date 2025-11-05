@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Context } from "../../../ContextApi/SetContext";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import SocialLogin from "../Login/SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -27,6 +28,8 @@ const SignUp = () => {
       .catch((error) => {
         console.log(error.message);
       });
+      
+    
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-400  to-pink-400 px-4 ">
@@ -103,6 +106,7 @@ const SignUp = () => {
             Log in
           </Link>
         </p>
+        <SocialLogin></SocialLogin>
       </div>
     </div>
   );

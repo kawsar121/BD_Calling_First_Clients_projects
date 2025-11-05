@@ -23,3 +23,10 @@
         * JWT Token
         * Set Cookies
 
+            ** Instance
+ const instance = axios.create({
+    baseURL : 'http://localhost:5000',
+    withCredentials : true
+}) 
+eta use korar karon holo axios ke shotcut and secure korar jonno
+

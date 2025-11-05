@@ -2,9 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../../ContextApi/SetContext";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import UseAxios from "../../../Auth/UseAxios";
 
 const AddtoCart = () => {
   const { user, loding } = useContext(Context);
+  const useAxiosSecure = UseAxios();
   const navigate = useNavigate();
   //   console.log(user)
   if (loding) {
@@ -17,16 +19,20 @@ const AddtoCart = () => {
       axios
         .post(
           "http://localhost:5000/jwt",
-          { email: user.email },
+          { email: user?.email },
           { withCredentials: true }
         )
         .then(() => {
-          axios
-            .get(`http://localhost:5000/cart?email=${user.email}`, {
-              withCredentials: true,
-            })
-            .then((res) => setCart(res.data))
-            .catch((err) => console.error(err));
+          // axios
+          //   .get(`http://localhost:5000/cart?email=${user.email}`, {
+          //     withCredentials: true,
+          //   })
+          //   .then((res) => setCart(res.data))
+          //   .catch((err) => console.error(err));
+          useAxiosSecure.get(`/cart?email=${user.email}`)
+          .then(res => {
+            setCart(res.data)
+          })
         });
     }
   }, [user?.email]);
@@ -45,7 +51,7 @@ const AddtoCart = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-5">
+    <div className="max-w-5xl mx-auto p-5 mt-24">
       <h2 className="textxl lg:text-2xl font-semibold mb-5">
         My Cart ({cart.length} items)
       </h2>

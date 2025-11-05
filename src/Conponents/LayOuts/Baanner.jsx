@@ -1,6 +1,7 @@
 import React from "react";
 import bannerimg from "../../assets/bg.jpg";
 import { Link } from "react-router-dom";
+import { TypeAnimation } from "react-type-animation";
 
 const Baanner = () => {
   return (
@@ -20,13 +21,18 @@ const Baanner = () => {
           Premium skincare that combines innovation with clean, effective
           ingredients for all skin types.
         </p>
-
         {/* Buttons */}
         <div className="flex  sm:flex-row gap-4">
-          <Link to="/collections" className="px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition">
+          <Link
+            to="/collections"
+            className="px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition"
+          >
             Shop Now
           </Link>
-          <Link to="/about" className="px-6 py-3 border border-white text-white rounded-full hover:bg-white hover:text-black transition">
+          <Link
+            to="/about"
+            className="px-6 py-3 border border-white text-white rounded-full hover:bg-white hover:text-black transition"
+          >
             About Us
           </Link>
         </div>
