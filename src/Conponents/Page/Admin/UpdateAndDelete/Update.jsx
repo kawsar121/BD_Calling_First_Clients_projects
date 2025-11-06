@@ -18,7 +18,7 @@ const Update = () => {
       url: form.url.value,
     };
     console.log(updatedProduct)
-    axios.put(`https://kb-fcszt4c44-kawsars-projects-6c73758e.vercel.app//iteams/${_id}`, updatedProduct)
+    axios.put(`https://bd-calling-first-project-backend.vercel.app/iteams/${_id}`, updatedProduct)
     .then(res=>{
         if (res.data) {
           alert("Product updated successfully!");

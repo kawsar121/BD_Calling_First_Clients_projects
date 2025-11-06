@@ -18,13 +18,13 @@ const AddtoCart = () => {
     if (user?.email) {
       axios
         .post(
-          "https://kb-fcszt4c44-kawsars-projects-6c73758e.vercel.app//jwt",
+          "https://bd-calling-first-project-backend.vercel.app/jwt",
           { email: user?.email },
           { withCredentials: true }
         )
         .then(() => {
           // axios
-          //   .get(`https://kb-fcszt4c44-kawsars-projects-6c73758e.vercel.app//cart?email=${user.email}`, {
+          //   .get(`https://bd-calling-first-project-backend.vercel.app/cart?email=${user.email}`, {
           //     withCredentials: true,
           //   })
           //   .then((res) => setCart(res.data))
@@ -39,7 +39,7 @@ const AddtoCart = () => {
 
   // Delete
   const handleDelete = (id) => {
-    axios.delete(`https://kb-fcszt4c44-kawsars-projects-6c73758e.vercel.app//cart/${id}`).then((res) => {
+    axios.delete(`https://bd-calling-first-project-backend.vercel.app/cart/${id}`).then((res) => {
       if (res.data.deletedCount > 0) {
         alert("🗑️ Item removed from cart!");
         setCart((prev) => prev.filter((item) => item._id !== id));

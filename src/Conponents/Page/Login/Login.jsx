@@ -23,7 +23,7 @@ const Login = () => {
         if (result.user) {
           alert("you are logIn");
           const users = {email:email}
-          axios.post('https://kb-fcszt4c44-kawsars-projects-6c73758e.vercel.app//jwt', users, {withCredentials:true})
+          axios.post('https://bd-calling-first-project-backend.vercel.app/jwt', users, {withCredentials:true})
           .then(result=>{
             console.log(result.data)
           })

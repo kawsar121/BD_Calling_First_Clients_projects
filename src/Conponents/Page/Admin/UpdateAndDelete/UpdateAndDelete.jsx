@@ -6,7 +6,7 @@ const UpdateAndDelete = () => {
   const [showProducts, setShowProducts] = useState([]);
   //   console.log(showProducts._id)
   useEffect(() => {
-    fetch("https://kb-fcszt4c44-kawsars-projects-6c73758e.vercel.app//iteams")
+    fetch("https://bd-calling-first-project-backend.vercel.app/iteams")
       .then((res) => res.json())
       .then((data) => {
         setShowProducts(data);
@@ -17,7 +17,7 @@ const UpdateAndDelete = () => {
   const handleDelete = (id) => {
     console.log(id);
     axios
-      .delete(`https://kb-fcszt4c44-kawsars-projects-6c73758e.vercel.app//iteams/${id}`)
+      .delete(`https://bd-calling-first-project-backend.vercel.app/iteams/${id}`)
       .then((res) => {
         console.log(res.data);
         if (res.data.deletedCount > 0) {

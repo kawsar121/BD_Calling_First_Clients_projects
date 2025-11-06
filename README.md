@@ -25,7 +25,7 @@
 
             ** Instance
  const instance = axios.create({
-    baseURL : 'https://kb-fcszt4c44-kawsars-projects-6c73758e.vercel.app/',
+    baseURL : 'https://bd-calling-first-project-backend.vercel.app',
     withCredentials : true
 }) 
 eta use korar karon holo axios ke shotcut and secure korar jonno
