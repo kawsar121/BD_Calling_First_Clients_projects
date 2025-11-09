@@ -33,7 +33,7 @@ const NavbarSearch = () => {
   // Load all products
   useEffect(() => {
     axios
-      .get("https://bd-calling-first-project-backend.vercel.app/iteams")
+      .get("bd-calling-first-project-backend-ax0of9i78.vercel.app/iteams")
       .then((res) => setProducts(res.data))
       .catch((err) => console.log(err));
   }, []);

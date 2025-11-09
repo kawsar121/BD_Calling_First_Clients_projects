@@ -37,7 +37,7 @@ const ProductDetails = () => {
       price: price,
       quantity:quantitys
     };
-    axios.post("https://bd-calling-first-project-backend.vercel.app/cart", cartData)
+    axios.post("bd-calling-first-project-backend-ax0of9i78.vercel.app/cart", cartData)
     .then((res) => {
       console.log(res.data);
       if (res.data.insertedId) {

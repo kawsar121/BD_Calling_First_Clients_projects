@@ -12,7 +12,7 @@ const IteamsAdd = () => {
     const price = form.price.value;
     const formsData = {name,category,url,quantity, price, details}
     console.log(formsData)
-    axios.post('https://bd-calling-first-project-backend.vercel.app/iteams', formsData)
+    axios.post('bd-calling-first-project-backend-ax0of9i78.vercel.app/iteams', formsData)
     .then(res=>{
       console.log(res.data)
       if(res.data.insertedId){

@@ -25,7 +25,7 @@
 
             ** Instance
  const instance = axios.create({
-    baseURL : 'https://bd-calling-first-project-backend.vercel.app',
+    baseURL : 'bd-calling-first-project-backend-ax0of9i78.vercel.app',
     withCredentials : true
 }) 
 eta use korar karon holo axios ke shotcut and secure korar jonno
@@ -46,3 +46,4 @@ useEffect(()=>{
         })
     },[])
 jokhon user shothik cookie use korbe na tokhon direct logout howe jabe
+Live Link : kb-cosmetics-products.netlify.app

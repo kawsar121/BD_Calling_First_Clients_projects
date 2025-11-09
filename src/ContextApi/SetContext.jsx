@@ -42,14 +42,14 @@ const SetContext = ({children}) => {
             // Set Cookie and remove cookie
             if(currentUser?.email){
                const userEmail = {email : currentUser.email};
-               axios.post('https://bd-calling-first-project-backend.vercel.app/jwt', userEmail, {withCredentials:true})
+               axios.post('bd-calling-first-project-backend-ax0of9i78.vercel.app/jwt', userEmail, {withCredentials:true})
                .then(res=> {
                 console.log(res.data); 
                 setLoading(false)
             })
             }    
             else{
-                axios.post('https://bd-calling-first-project-backend.vercel.app/logout',{}, {withCredentials:true})
+                axios.post('bd-calling-first-project-backend-ax0of9i78.vercel.app/logout',{}, {withCredentials:true})
                 .then(res=> {
                     console.log(res.data);
                     setLoading(false)
