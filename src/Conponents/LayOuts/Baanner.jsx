@@ -6,8 +6,11 @@ import { TypeAnimation } from "react-type-animation";
 const Baanner = () => {
   return (
     <div
-      className="relative bg-cover bg-center w-[390px] h-[510px]  md:w-[1350px] md:h-[600px] flex items-center"
-      style={{ backgroundImage: `url(${bannerimg})` }}
+      className="relative bg-cover bg-center bg-no-repeat
+w-full h-[400px] md:h-[500px] lg:h-[650px] xl:h-[750px]
+flex items-center"
+style={{ backgroundImage: `url(${bannerimg})` }}
+
     >
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/50"></div>
