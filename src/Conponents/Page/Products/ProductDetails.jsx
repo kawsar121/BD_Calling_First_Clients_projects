@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate, useParams } from "react-router-dom";
 import { Context } from "../../../ContextApi/SetContext";
 import axios from "axios";
 
@@ -8,6 +8,8 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const pdetails = useLoaderData();
+
+  
 
   if (!pdetails) {
     return <p>loading....</p>;
@@ -19,7 +21,7 @@ const ProductDetails = () => {
     if (quantitys > 1) setQuantitys((prev) => prev - 1);
   };
   const { _id, name, category, url, quantity, price, details } = pdetails;
-  console.log(pdetails);
+  // console.log(pdetails);
   // Post Cart
   const handleAddtoCarts = () => {
     if (!user) {
@@ -37,7 +39,7 @@ const ProductDetails = () => {
       price: price,
       quantity:quantitys
     };
-    axios.post("bd-calling-first-project-backend-ax0of9i78.vercel.app/cart", cartData)
+    axios.post("https://bd-calling-first-project-backend.vercel.app/cart", cartData)
     .then((res) => {
       console.log(res.data);
       if (res.data.insertedId) {

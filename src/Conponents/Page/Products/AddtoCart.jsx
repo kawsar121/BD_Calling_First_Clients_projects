@@ -13,42 +13,47 @@ const AddtoCart = () => {
     return <p>loading...</p>;
   }
   const [cart, setCart] = useState([]);
-  console.log(cart);
+  // console.log(cart);
   useEffect(() => {
     if (user?.email) {
       axios
         .post(
-          "bd-calling-first-project-backend-ax0of9i78.vercel.app/jwt",
+          "https://bd-calling-first-project-backend.vercel.app/jwt",
           { email: user?.email },
-          { withCredentials: true }
+          { withCredentials: true },
         )
         .then(() => {
-          // axios
-          //   .get(`bd-calling-first-project-backend-ax0of9i78.vercel.app/cart?email=${user.email}`, {
-          //     withCredentials: true,
-          //   })
-          //   .then((res) => setCart(res.data))
-          //   .catch((err) => console.error(err));
-          useAxiosSecure.get(`/cart?email=${user.email}`)
-          .then(res => {
-            setCart(res.data)
-          })
+          axios
+            .get(`https://bd-calling-first-project-backend.vercel.app/cart?email=${user.email}`, {
+              withCredentials: true,
+            })
+            .then((res) => setCart(res.data))
+            .catch((err) => console.error(err));
+          // useAxiosSecure.get(`/cart?email=${user.email}`).then((res) => {
+          //   setCart(res.data);
+          // });
         });
     }
   }, [user?.email]);
 
   // Delete
   const handleDelete = (id) => {
-    axios.delete(`bd-calling-first-project-backend-ax0of9i78.vercel.app/cart/${id}`).then((res) => {
-      if (res.data.deletedCount > 0) {
-        alert("🗑️ Item removed from cart!");
-        setCart((prev) => prev.filter((item) => item._id !== id));
-      }
-    });
+    axios
+      .delete(
+        `https://bd-calling-first-project-backend.vercel.app/cart/${id}`,
+      )
+      .then((res) => {
+        if (res.data.deletedCount > 0) {
+          alert("🗑️ Item removed from cart!");
+          setCart((prev) => prev.filter((item) => item._id !== id));
+        }
+      });
   };
   const continueShopping = () => {
     navigate("/showProducts");
   };
+  console.log(cart);
+  
 
   return (
     <div className="max-w-5xl mx-auto p-5 mt-24">
@@ -56,7 +61,7 @@ const AddtoCart = () => {
         My Cart ({cart.length} items)
       </h2>
       <div className="grid gap-4">
-        {cart.map((item) => (
+        {cart?.map((item) => (
           <div
             key={item._id}
             className="flex justify-between items-center border p-3 rounded-lg"
