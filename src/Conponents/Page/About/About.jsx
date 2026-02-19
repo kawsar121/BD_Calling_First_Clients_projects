@@ -2,10 +2,61 @@
 
 const About = () => {
     return (
-        <div>
-            
-            <p className='min-h-screen mt-24 max-w-7xl mx-auto'> Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam temporibus, veniam placeat error esse nisi modi. Molestias magnam dolores ab cupiditate repellendus deserunt reiciendis atque excepturi commodi repellat praesentium facere eum architecto tenetur voluptatem doloribus dicta, molestiae, exercitationem nihil alias est inventore fugiat. Blanditiis, molestiae. Saepe, provident! Quod molestias, quas porro impedit repudiandae repellat asperiores cupiditate? Incidunt nesciunt qui eius aut vitae veritatis possimus asperiores facere tempora corrupti minima commodi, mollitia error dolore, nostrum consectetur, harum voluptatum exercitationem praesentium officiis laudantium. Possimus culpa incidunt voluptatibus eligendi nisi non unde ipsum animi nihil rem, modi voluptate eius praesentium asperiores sapiente facilis delectus optio illum repudiandae. Quidem odit libero aut non ullam suscipit? Possimus alias porro voluptates, quia ad nemo in, aliquam ex tempore voluptatibus a. Sapiente ipsam quasi officia numquam saepe? Magnam eius ut veritatis sed nisi a, obcaecati laboriosam culpa minima quia enim debitis ducimus officiis ratione mollitia accusantium cumque, unde odit aliquam velit cum tempora et. Animi, perferendis! Sequi fugit vel quibusdam laudantium! Maxime sed harum ipsum laborum nemo corporis eaque necessitatibus nam? Molestias aut vitae tempore ipsum provident eaque in numquam consequatur non, voluptatum et eligendi, pariatur totam hic. Odio magnam quia, dolores nihil consequuntur labore dolore molestias illo, necessitatibus quaerat cum, corrupti eos quas deleniti veniam placeat blanditiis fugiat repudiandae culpa. Atque labore itaque blanditiis nam ipsam optio sed, deleniti ullam. Voluptate aperiam, voluptates, reprehenderit dicta amet consectetur doloremque ad non eveniet porro ipsa placeat tempore, asperiores pariatur voluptatem vitae quos totam illum aliquam deleniti id doloribus? Quisquam ad consequatur ullam non aut veniam omnis consectetur quia deleniti doloremque inventore vel, voluptates temporibus quo nobis maxime odio obcaecati. Aut hic libero minima nostrum delectus nihil repellendus consequuntur vel ad obcaecati odio distinctio architecto facere quidem aspernatur necessitatibus accusantium sapiente, quisquam eos in. Non impedit blanditiis amet voluptatem? Tempora fuga alias officiis. Ab consectetur, repellendus consequuntur illum cumque porro ea aliquam amet recusandae? Maxime sint odio accusantium fugit, excepturi omnis ipsa asperiores aperiam dolorem fugiat? Corrupti illo earum temporibus? In reprehenderit laudantium vitae distinctio, sed officiis eum suscipit pariatur totam amet omnis consectetur inventore. Consequatur tempore maiores magnam numquam a, hic fugit in nulla, voluptatibus libero, possimus dignissimos quae! Minus cupiditate nobis incidunt soluta, expedita laudantium enim temporibus iste sint deleniti natus cumque accusantium, veniam similique nemo veritatis alias ullam dignissimos. Eius, pariatur a, obcaecati magni facilis assumenda quam consequatur, optio culpa suscipit velit dolorum. Illum, nobis sequi nisi, eius facilis consectetur nesciunt perferendis aperiam vero iusto totam magni maxime laboriosam ipsa mollitia inventore suscipit debitis, aspernatur id vitae laborum. Tempora esse ducimus id tempore corporis eos quo consequatur nisi quis, natus inventore alias et aspernatur earum voluptates ex, maxime animi unde commodi aliquam suscipit, ipsam a cum. Tempore hic, dolorem sunt impedit atque sapiente possimus neque. Quasi illo placeat ea commodi repudiandae consequatur hic modi accusamus voluptate doloremque eligendi labore impedit porro, tenetur sit est? Consequatur, alias. Saepe omnis veniam cum nostrum animi accusantium rerum qui fugit, sint tenetur impedit aspernatur eaque est, consequuntur assumenda, officiis autem.</p>
+        <section className="bg-pink-50 py-16 px-4 md:px-16 mt-10">
+      <div className="max-w-5xl mx-auto text-center my-10">
+        <h3 className="text-2xl font-semibold text-gray-800 mb-8">
+          Welcome to <span className="text-pink-500">Cosmetics Products Shop</span> — where beauty, quality, and confidence come together.
+        </h3>
+
+        <p className="text-gray-700 text-lg mb-28 mt-10">
+          <span className="font-semibold">Cosmetics Products Shop</span> started with a simple but powerful vision: <br />
+          <span className="text-pink-500 font-medium">To enhance every individual’s natural beauty.</span>
+        </p>
+
+        <div className="grid md:grid-cols-3 gap-6 text-left mt-28 mb-32">
+          <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+            <h4 className="font-semibold text-pink-500 text-xl mb-2">Our Belief</h4>
+            <ul className="list-disc list-inside text-gray-700 space-y-1">
+              <li>True beauty begins with confidence.</li>
+              <li>Healthy skin makes your beauty shine even more.</li>
+              <li>Safe, effective, and trustworthy products for everyone.</li>
+            </ul>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+            <h4 className="font-semibold text-pink-500 text-xl mb-2">Our Mission</h4>
+            <ul className="list-disc list-inside text-gray-700 space-y-1">
+              <li>Not just makeup, but complete care for your skin.</li>
+              <li>Deliver high-quality products made from the best ingredients.</li>
+              <li>Make your beauty routine simple, safe, and enjoyable.</li>
+            </ul>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+            <h4 className="font-semibold text-pink-500 text-xl mb-2">Our Philosophy</h4>
+            <ul className="list-disc list-inside text-gray-700 space-y-1">
+              <li>Paraben-Free</li>
+              <li>Cruelty-Free</li>
+              <li>Dermatologically Tested</li>
+              <li>Environmentally Friendly</li>
+            </ul>
+          </div>
         </div>
+
+        <p className="text-gray-700 text-lg mt-8">
+          When you choose <span className="font-semibold text-pink-500">Cosmetics Products Shop</span>, you don’t just get a product — you get an experience, confidence, and care.
+        </p>
+
+        <p className="text-gray-700 text-lg mt-4">
+          Whether you want to upgrade your makeup, skincare, or overall beauty routine — <br />
+          <span className="font-semibold text-pink-500">Cosmetics Products Shop</span> is your trusted companion.
+        </p>
+
+        <p className="text-pink-600 font-semibold text-xl mt-6">
+          Let’s Glow Together!
+        </p>
+      </div>
+    </section>
     );
 };
 

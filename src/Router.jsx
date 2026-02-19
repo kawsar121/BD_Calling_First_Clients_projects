@@ -16,6 +16,7 @@ import UpdateAndDelete from "./Conponents/Page/Admin/UpdateAndDelete/UpdateAndDe
 import Update from "./Conponents/Page/Admin/UpdateAndDelete/Update";
 import AdminProtected from "./Conponents/Page/Admin/AdminProtected";
 import Controll from "./AdminControll/Controll";
+import Contact from "./Conponents/Page/Contact/Contact";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
         {
           path:"/about",
           element: <About></About>
+        },
+        {
+          path : "/contact",
+          element: <Contact></Contact>
         },
         {
           path:"/collections",

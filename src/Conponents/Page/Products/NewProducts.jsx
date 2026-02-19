@@ -13,7 +13,7 @@ const NewProducts = () => {
       });
   }, []);
 
-  const displayedProducts = showAll ? showProducts : showProducts.slice(0, 4);
+  const displayedProducts = showAll ? showProducts : showProducts.slice(0, 12);
 
   return (
     <div className="max-w-7xl mx-auto mt-10">
