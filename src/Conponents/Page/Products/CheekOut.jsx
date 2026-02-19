@@ -1,10 +1,13 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-
+import axios from "axios";
 const Checkout = () => {
   const location = useLocation();
   const cart = location.state?.cart || [];
-  console.log(cart)
+  console.log(cart);
+  const totalPrice = cart.reduce((total, item) => {
+    return total + item.price * (item.quantity || 1);
+  }, 0);
 
   const handlePlaceOrder = (e) => {
     e.preventDefault();
@@ -13,18 +16,24 @@ const Checkout = () => {
     const email = form.email.value;
     const address = form.address.value;
     const phone = form.phone.value;
-
+    const trxid = form.trxid.value;
     const orderData = {
       name,
       email,
       address,
       phone,
       cart,
+      trxid,
+      totalPrice,
+      status: "pending",
       date: new Date().toLocaleString(),
     };
 
     console.log(orderData);
-    alert("✅ Order placed successfully!");
+    // alert("✅ Order placed successfully!");
+    axios.post("https://bd-calling-first-project-backend.vercel.app/payment", orderData).then((res) => {
+      alert("Order submitted! We will verify your payment soon.");
+    });
   };
 
   return (
@@ -61,6 +70,32 @@ const Checkout = () => {
             required
           ></textarea>
 
+          {/* Add Bkash */}
+          <div className="border p-4 rounded-md bg-pink-50">
+            <h3 className="font-semibold mb-2 text-pink-600">
+              bKash Payment Instruction
+            </h3>
+
+            <p className="text-sm">
+              Please send <span className="font-bold">{totalPrice}$</span> to:
+            </p>
+
+            <p className="font-bold text-lg text-pink-700">01622646721</p>
+            <p className="text-sm mb-3">(Agent bKash Number)</p>
+
+            <p className="text-sm mb-2">
+              After payment, enter your bKash Transaction ID below:
+            </p>
+
+            <input
+              name="trxid"
+              type="text"
+              placeholder="Enter bKash Transaction ID"
+              className="w-full border p-3 rounded-md"
+              required
+            />
+          </div>
+
           <button
             type="submit"
             className="w-full bg-black text-white py-3 rounded-md hover:bg-gray-900"
@@ -93,11 +128,16 @@ const Checkout = () => {
                     <p className="text-gray-500">Qty: {item.quantity}</p>
                   </div>
                 </div>
-                <p className="font-semibold">${item.price}</p>
+                <p className="font-semibold">{item.price}$</p>
               </div>
             ))}
           </div>
         )}
+        {/* Total price Add */}
+        <div className="border-t pt-4 mt-4 flex justify-between text-lg font-bold">
+          <span>Total:</span>
+          <span>{totalPrice}$</span>
+        </div>
       </div>
     </div>
   );
