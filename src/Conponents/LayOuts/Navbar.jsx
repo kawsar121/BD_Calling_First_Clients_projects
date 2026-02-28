@@ -131,6 +131,9 @@ const Navbar = () => {
                       <Link to="/cart">Order History</Link>
                     </li>
                     <li>
+                      <Link to="/dashboard">Dashboard</Link>
+                    </li>
+                    <li>
                       <Link onClick={handleLogedOut}>Log Out</Link>
                     </li>
                   </>

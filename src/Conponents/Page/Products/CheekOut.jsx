@@ -1,8 +1,9 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 const Checkout = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const cart = location.state?.cart || [];
   console.log(cart);
   const totalPrice = cart.reduce((total, item) => {
@@ -31,9 +32,27 @@ const Checkout = () => {
 
     console.log(orderData);
     // alert("✅ Order placed successfully!");
-    axios.post("https://bd-calling-first-project-backend.vercel.app/payment", orderData).then((res) => {
-      alert("Order submitted! We will verify your payment soon.");
+    axios
+  .post(
+    "https://bd-calling-first-project-backend.vercel.app/payments",
+    orderData,
+    { withCredentials: true }
+  )
+  .then((res) => {
+    console.log("Payment response:", res.data);
+
+    navigate("/payments", {
+      state: {
+        status: "pending",
+        trxid,
+        totalPrice,
+      },
     });
+  })
+  .catch((error) => {
+    console.error("Order failed:", error);
+    alert("❌ Order place failed, try again");
+  });
   };
 
   return (

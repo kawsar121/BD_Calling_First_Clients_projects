@@ -18,6 +18,10 @@ import Controll from "./AdminControll/Controll";
 import Contact from "./Conponents/Page/Contact/Contact";
 import NewProducts from "./Conponents/Page/Products/NewProducts";
 import AdminOrders from "./Conponents/Page/Admin/AdminOrders";
+import PaymentStatus from "./Conponents/Page/Payments/PaymentStatus";
+import DashboardLayout from "./Conponents/Page/Dashboard/DashboardLayout";
+import DashboardHome from "./Conponents/Page/Dashboard/DashboardHome";
+import MyOrders from "./Conponents/Page/Dashboard/MyOrders";
 
 const router = createBrowserRouter([
   {
@@ -110,6 +114,19 @@ const router = createBrowserRouter([
       {
         path: "/admin/orders",
         element: <AdminOrders />,
+      },
+      {
+        path: "/dashboard",
+        element: (
+          <ProtectedRoute>
+            <DashboardLayout />
+          </ProtectedRoute>
+        ),
+        children: [
+          { index: true, element: <DashboardHome /> },
+          { path: "orders", element: <MyOrders /> },
+          { path: "payments", element: <PaymentStatus /> },
+        ],
       },
     ],
   },
