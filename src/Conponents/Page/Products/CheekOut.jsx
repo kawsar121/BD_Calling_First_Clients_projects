@@ -41,7 +41,7 @@ const Checkout = () => {
   .then((res) => {
     console.log("Payment response:", res.data);
 
-    navigate("/payments", {
+    navigate("/dashboard/payments", {
       state: {
         status: "pending",
         trxid,

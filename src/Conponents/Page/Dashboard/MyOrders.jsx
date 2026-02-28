@@ -19,7 +19,7 @@ const MyOrders = () => {
   }, [user]);
 
   return (
-    <div>
+    <div className="mt-16">
       <h2 className="text-2xl font-bold mb-4">My Orders</h2>
 
       <div className="space-y-4">

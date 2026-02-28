@@ -16,8 +16,8 @@ const PaymentStatus = () => {
   }, [user]);
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4">Payment History</h2>
+    <div className="mt-16">
+      <h2 className="text-2xl font-bold text-center mb-7">Payment History</h2>
 
       <div className="overflow-x-auto bg-white rounded-xl shadow">
         <table className="w-full text-left">
