@@ -22,6 +22,12 @@ import PaymentStatus from "./Conponents/Page/Payments/PaymentStatus";
 import DashboardLayout from "./Conponents/Page/Dashboard/DashboardLayout";
 import DashboardHome from "./Conponents/Page/Dashboard/DashboardHome";
 import MyOrders from "./Conponents/Page/Dashboard/MyOrders";
+import ManageOrders from "./Conponents/Page/Admin/ManageOrders";
+import ManageProducts from "./Conponents/Page/Admin/ManageProducts";
+import ManageUsers from "./Conponents/Page/Admin/ManageUsers";
+import ManagePayments from "./Conponents/Page/Admin/ManagePayments";
+import AdminLayout from "./Conponents/Page/Admin/AdminLayout";
+import AdminRoute from "./Private/AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -126,6 +132,24 @@ const router = createBrowserRouter([
           { index: true, element: <DashboardHome /> },
           { path: "orders", element: <MyOrders /> },
           { path: "payments", element: <PaymentStatus /> },
+        ],
+      },
+      //Admin
+      {
+        path: "/admin",
+        element: (
+          <ProtectedRoute>
+            <AdminRoute>
+              <AdminLayout />
+            </AdminRoute>
+          </ProtectedRoute>
+        ),
+        children: [
+          { index: true, element: <h2 className="p-4">Welcome Admin</h2> },
+          { path: "orders", element: <ManageOrders /> },
+          { path: "products", element: <ManageProducts /> },
+          { path: "users", element: <ManageUsers /> },
+          { path: "payments", element: <ManagePayments /> },
         ],
       },
     ],

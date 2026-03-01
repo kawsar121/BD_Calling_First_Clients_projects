@@ -1,46 +1,70 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Context } from "../../../ContextApi/SetContext";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import SocialLogin from "./SocialLogin/SocialLogin";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
 const Login = () => {
-  const { loginUser,googleSignIn } = useContext(Context);
+  const { loginUser } = useContext(Context);
   const location = useLocation();
-  // console.log('login',location)
   const navigate = useNavigate();
-     const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/";
+  
+  const [email, setEmail] = useState("");
+  
+  const auth = getAuth();
+
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
-    const email = form.email.value;
     const password = form.password.value;
-    const singInData = { email, password };
-    console.log(singInData);
+
     loginUser(email, password)
       .then((result) => {
-        console.log(result.user);
         if (result.user) {
-          alert("you are logIn");
-          const users = {email:email}
-          axios.post('https://bd-calling-first-project-backend.vercel.app/jwt', users, {withCredentials:true})
-          .then(result=>{
-            console.log(result.data)
-          })
+          alert("Login Successful");
+
+          // JWT token generate
+          axios
+            .post(
+              "https://bd-calling-first-project-backend.vercel.app/jwt",
+              { email },
+              { withCredentials: true },
+            )
+            .then(async () => {
+              // Admin check
+              const res = await axios.get(
+                `https://bd-calling-first-project-backend.vercel.app/admin/check-admin?email=${email}`,
+                { withCredentials: true },
+              );
+
+              if (res.data.isAdmin) {
+                navigate("/admin", { replace: true });
+              } else {
+                navigate("/dashboard", { replace: true });
+              }
+            });
         }
-        // navigate(from)
-        navigate(from, { replace: true }); 
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.message);
+        alert("Login failed!");
       });
-      
   };
+
+  const handleResetPassword = () => {
+    if (!email) return alert("Please enter your email first");
+    sendPasswordResetEmail(auth, email)
+      .then(() => alert("Password reset email sent! Check your inbox."))
+      .catch((err) => alert(err.message));
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#F9E4CB] px-4 ">
       <div className="bg-white shadow-2xl mt-24 rounded-2xl w-3/4 max-w-md py-20 px-10 lg:mb-10">
         <h2 className="text-3xl font-bold text-center text-purple-700 mb-6">
-          Create Your Account
+          Log In
         </h2>
         <form onSubmit={handleSignIn}>
           <div>
@@ -50,9 +74,11 @@ const Login = () => {
             <input
               type="email"
               name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="Enter your email"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-400 outline-none text-gray-900 "
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-400 outline-none text-gray-900"
             />
           </div>
 
@@ -77,8 +103,17 @@ const Login = () => {
             />
           </div>
         </form>
+
+        {/* Forgot Password */}
+        <p
+          onClick={handleResetPassword}
+          className="text-sm text-purple-600 mt-3 cursor-pointer hover:underline text-center"
+        >
+          Forgot Password?
+        </p>
+
         <p className="text-center text-sm text-gray-600 mt-5">
-          Already have an account?{" "}
+          Don't have an account?{" "}
           <Link
             to="/signup"
             className="text-purple-600 font-semibold hover:underline"
@@ -86,7 +121,8 @@ const Login = () => {
             Sign Up
           </Link>
         </p>
-        <SocialLogin></SocialLogin>
+
+        <SocialLogin />
       </div>
     </div>
   );
