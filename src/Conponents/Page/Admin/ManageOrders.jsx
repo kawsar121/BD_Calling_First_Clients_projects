@@ -3,11 +3,14 @@ import axios from "axios";
 
 const ManageOrders = () => {
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchOrders = () => {
+    setLoading(true);
     axios.get("https://bd-calling-first-project-backend.vercel.app/admin/orders", { withCredentials: true })
       .then(res => setOrders(res.data))
-      .catch(err => console.error(err));
+      .catch(err => console.error(err))
+      .finally(() => setLoading(false));
   };
 
   useEffect(() => { fetchOrders(); }, []);
@@ -17,6 +20,9 @@ const ManageOrders = () => {
       .then(() => fetchOrders())
       .catch(err => console.error(err));
   };
+
+  if (loading) return <p className="text-center mt-20 text-lg">Loading orders...</p>;
+  if (!orders.length) return <p className="text-center mt-20 text-lg">No orders yet</p>;
 
   return (
     <div className="space-y-4">
@@ -33,10 +39,16 @@ const ManageOrders = () => {
           <div className="flex flex-col gap-2">
             <div className="flex gap-2">
               {["pending","confirmed","delivered"].map(status => (
-                <button key={status} onClick={() => updateOrder(order._id,{status})} className={`px-3 py-1 rounded text-white ${order.status===status?"bg-green-500":"bg-gray-400"}`}>{status}</button>
+                <button
+                  key={status}
+                  onClick={() => updateOrder(order._id, { status })}
+                  className={`px-3 py-1 rounded text-white ${order.status===status?"bg-green-500":"bg-gray-400"}`}
+                >
+                  {status}
+                </button>
               ))}
             </div>
-            <select value={order.deliveryTime||""} onChange={e=>updateOrder(order._id,{deliveryTime:e.target.value})} className="border p-1 rounded">
+            <select value={order.deliveryTime||""} onChange={e => updateOrder(order._id, { deliveryTime: e.target.value })} className="border p-1 rounded">
               <option value="">Set Delivery Time</option>
               <option value="1-2 days">1-2 days</option>
               <option value="3-5 days">3-5 days</option>

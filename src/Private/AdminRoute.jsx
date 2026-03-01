@@ -1,41 +1,34 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Navigate, useLocation } from "react-router-dom";
-import { Context } from "../ContextApi/SetContext"; // তোমার Auth/User context
+import { useContext, useEffect, useState } from "react";
+import { Context } from "../ContextApi/SetContext";
+import { Navigate } from "react-router-dom";
+import axios from "axios";
 
 const AdminRoute = ({ children }) => {
-  const { user } = useContext(Context); // লগিন করা user
-  const location = useLocation();
-  const [isAdmin, setIsAdmin] = useState(null);
+  const { user } = useContext(Context);
+  const [isAdmin, setIsAdmin] = useState(null); // null = loading
 
   useEffect(() => {
     if (!user?.email) {
       setIsAdmin(false);
       return;
     }
+    const checkAdmin = async () => {
+      try {
+        const res = await axios.get(
+          `https://bd-calling-first-project-backend.vercel.app/admin/check-admin?email=${user.email}`,
+          { withCredentials: true }
+        );
+        setIsAdmin(res.data.isAdmin);
+      } catch (err) {
+        setIsAdmin(false);
+      }
+    };
+    checkAdmin();
+  }, [user?.email]);
 
-    // Backend call to check admin role
-    fetch(`https://bd-calling-first-project-backend.vercel.app/admin/users`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        const currentUser = data.find(u => u.email === user.email);
-        if (currentUser?.role === "admin") setIsAdmin(true);
-        else setIsAdmin(false);
-      })
-      .catch(() => setIsAdmin(false));
-  }, [user]);
+  if (isAdmin === null) return <p>Loading...</p>; // wait until backend responds
 
-  if (isAdmin === null) {
-    return <p>Loading...</p>; // বা spinner
-  }
-
-  if (!isAdmin) {
-    return <Navigate to="/" state={{ from: location }} replace />;
-  }
+  if (!isAdmin) return <Navigate to="/" replace />;
 
   return children;
 };
